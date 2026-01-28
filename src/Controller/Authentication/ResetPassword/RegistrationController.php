@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Authentication\Registration;
+namespace App\Controller\Authentication\ResetPassword;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
