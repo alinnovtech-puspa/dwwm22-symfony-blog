@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Visitor\Welcom;
+namespace App\Controller\Visitor\Welcome;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
