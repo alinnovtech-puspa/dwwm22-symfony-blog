@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Authentication\ResetPassword;
+namespace App\Controller\Authentication\Registration;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -26,6 +26,10 @@ class RegistrationController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_visitor_welcome');
+        }
+
         $user = new User(); // 1.
         $form = $this->createForm(RegistrationFormType::class, $user); // 2.
         $form->handleRequest($request);
