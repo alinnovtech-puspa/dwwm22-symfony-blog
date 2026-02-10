@@ -34,9 +34,7 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /**
-             * @var User
-             */
+            /** @var User */
             $admin = $this->getUser();
             $post->setUser($admin);
 
@@ -53,6 +51,33 @@ final class PostController extends AbstractController
 
         return $this->render('pages/admin/post/create.html.twig', [
             'postForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/post/{id<\d+>}/edit', name: 'app_admin_post_edit', methods: ['GET', 'POST'])]
+    public function edit(Post $post, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(PostFormType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
+            $admin = $this->getUser();
+            $post->setUser($admin);
+
+            $post->setUpdatedAt(new \DateTimeImmutable());
+
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash('success', "L'article a été modifié avec succès.");
+
+            return $this->redirectToRoute('app_admin_post_index');
+        }
+
+        return $this->render('pages/admin/post/edit.html.twig', [
+            'postForm' => $form->createView(),
+            'post' => $post,
         ]);
     }
 }
