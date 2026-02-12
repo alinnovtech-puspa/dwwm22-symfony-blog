@@ -64,11 +64,11 @@ url: 'https://cdn.datatables.net/plug-ins/2.3.7/i18n/fr-FR.json'
 								<input type="hidden" name="csrf_token" value="{{csrf_token('category-'~category.id)}}">
 
 								{% if category.posts is empty %}
-									<button onclick="return confirm('Confirmer la suppression de cette catégorie?')" type="submit" class="btn btn-sm btn-danger">
+									<button onclick="return confirm('Confirmer la suppression de cette catégorie?')" type="submit" class="btn btn-sm btn-primary">
 										<i class="fa-solid fa-delete-left"></i>
 										Supprimer</button>
 								{% else %}
-									<button onclick="return confirm('Attention!!! En supprimant cette catégorie, vous supprimerez aussi les articles qui lui sont associés?')" type="submit" class="btn btn-sm btn-danger">
+									<button onclick="return confirm('Attention!!! En supprimant cette catégorie, vous supprimerez aussi les articles qui lui sont associés?')" type="submit" class="btn btn-sm btn-primary">
 										<i class="fa-solid fa-delete-left"></i>
 										Supprimer</button>
 								{% endif %}
